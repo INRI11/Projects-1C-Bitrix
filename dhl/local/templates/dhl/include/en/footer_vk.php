@@ -1,0 +1,1 @@
+<a class="site-footer_social_list_item cell small-6 medium-3 large-6" href="https://vk.com/dhlclub" target="_blank"><span class="icon-vk"></span><span>вконтакте</span></a>

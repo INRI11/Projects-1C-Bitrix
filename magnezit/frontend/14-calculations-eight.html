@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Расчеты - Расчет стационарной температуры кожуха</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.7.2/css/lightgallery.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/styles-more.css">
+    <style type="text/css">
+      .wrapper { 
+        opacity: 0;
+        -webkit-transition: opacity 0.4s;
+        transition: opacity 0.4s;
+      }
+      .page-loaded .wrapper { 
+        opacity: 1;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        return document.querySelector('body').classList.add('page-loaded');
+      }
+      if (/(MacIntel|Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+        document.querySelector('html').classList.add('ios')
+      }
+      if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > -1) {
+        document.querySelector('html').classList.add('MSIE');
+      }
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header"><a class="header__logo" href="/"><svg viewBox="0 0 175 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M62.5845 8.78489H62.4366L61.1652 11.6469L59.8684 14.4329C59.6845 14.8519 59.4979 15.1414 59.3074 15.2988C59.1155 15.4576 58.8356 15.5377 58.4717 15.5377H56.8005C56.3847 15.5377 56.0982 15.4576 55.9396 15.2988C55.781 15.1401 55.6024 14.8519 55.4038 14.4329L54.2817 12.174L52.837 9.08644H52.6877V17.1188C52.6877 17.3536 52.6464 17.4911 52.5624 17.5324C52.4798 17.5751 52.3386 17.5951 52.14 17.5951H48.6736C48.4896 17.5951 48.3497 17.5738 48.2498 17.5324C48.1511 17.4911 48.1005 17.3536 48.1005 17.1188V2.00809C48.1005 1.2222 48.2404 0.695159 48.5243 0.426969C48.8068 0.158779 49.264 0.0253513 49.8943 0.0253513H51.8148C52.3452 0.0253513 52.729 0.121419 52.9609 0.313555C53.1928 0.505692 53.4181 0.819247 53.634 1.25422L55.629 5.42117L57.5735 9.53742H57.6734L59.6179 5.47188L61.613 1.33028C61.8275 0.895301 62.0688 0.569737 62.3353 0.35225C62.6005 0.134762 63.0497 0.0253513 63.6827 0.0253513H65.2273C65.4939 0.0253513 65.7351 0.0466997 65.951 0.0880624C66.1669 0.130759 66.3548 0.213485 66.5121 0.338907C66.6707 0.465663 66.7906 0.649794 66.8732 0.892632C66.9559 1.13547 66.9985 1.44903 66.9985 1.8333V17.1188C66.9985 17.3536 66.9572 17.4911 66.8732 17.5324C66.7906 17.5751 66.64 17.5951 66.4241 17.5951H63.1323C62.9497 17.5951 62.8124 17.5738 62.7205 17.5324C62.6298 17.4911 62.5819 17.3536 62.5819 17.1188V8.78489H62.5845ZM78.1881 14.1554H73.2743L72.452 17.0427C72.3854 17.2282 72.3068 17.3656 72.2148 17.4577C72.1228 17.5498 71.9376 17.5965 71.6537 17.5965H67.9887C67.8221 17.5965 67.7182 17.5498 67.6782 17.4577C67.6356 17.3656 67.6316 17.2522 67.6649 17.1188L72.5773 1.58112C72.7932 0.912646 73.0597 0.481675 73.3756 0.288204C73.6915 0.0947338 74.1313 0 74.6963 0H76.7167C77.0166 0 77.2778 0.0133428 77.503 0.0373598C77.7283 0.0613768 77.9269 0.124088 78.1001 0.225493C78.276 0.326898 78.4333 0.481675 78.5746 0.689822C78.7145 0.899304 78.8438 1.18751 78.961 1.55577L83.8735 17.1175L83.8868 17.419C83.8601 17.5364 83.7482 17.5938 83.5483 17.5938H79.7847C79.5848 17.5938 79.4195 17.5684 79.2849 17.5191C79.1516 17.4684 79.061 17.3523 79.0117 17.1668L78.1881 14.1554ZM74.3232 10.4421H77.1645L76.6914 8.48468L75.8931 4.87012H75.6945L74.8456 8.5594L74.3232 10.4421ZM89.2523 17.0934C89.2523 17.2936 89.223 17.427 89.1657 17.4937C89.1071 17.5618 88.9365 17.5951 88.654 17.5951H85.1142C84.7317 17.5951 84.5398 17.4283 84.5398 17.0934V4.79406C84.5398 4.1923 84.6225 3.60255 84.7904 3.02481C84.9556 2.44707 85.2262 1.93737 85.5993 1.49439C85.9738 1.05008 86.4683 0.695159 87.0827 0.428303C87.6971 0.161448 88.4447 0.0266856 89.3283 0.0266856H95.3935C95.5921 0.0266856 95.7214 0.0560397 95.78 0.114748C95.8373 0.172122 95.8666 0.344244 95.8666 0.628445V3.46512C95.8666 3.68261 95.8333 3.82805 95.7667 3.9041C95.7001 3.98015 95.5748 4.01751 95.3935 4.01751H90.7503C90.4171 4.01751 90.1506 4.06421 89.9507 4.15628C89.7521 4.24834 89.6015 4.36176 89.5029 4.49518C89.4029 4.62995 89.3363 4.77939 89.3043 4.94617C89.271 5.11296 89.2537 5.28107 89.2537 5.44786V17.0934H89.2523ZM111.761 17.483C111.702 17.5578 111.531 17.5951 111.249 17.5951H107.709C107.327 17.5951 107.135 17.4203 107.135 17.0681V10.4421H101.6V17.0681C101.6 17.2696 101.571 17.407 101.513 17.483C101.455 17.5578 101.284 17.5951 101.002 17.5951H97.4619C97.0794 17.5951 96.8875 17.4203 96.8875 17.0681V0.552391C96.8875 0.200142 97.0794 0.0253513 97.4619 0.0253513H101.002C101.284 0.0253513 101.455 0.0627111 101.513 0.138765C101.571 0.213485 101.6 0.35225 101.6 0.552391V6.47659H107.135V0.552391C107.135 0.200142 107.327 0.0253513 107.709 0.0253513H111.249C111.531 0.0253513 111.702 0.0627111 111.761 0.138765C111.818 0.213485 111.847 0.35225 111.847 0.552391V17.0681C111.849 17.2696 111.818 17.407 111.761 17.483ZM154.928 7.58004L152.682 11.2947L149.292 16.465C149.125 16.7158 148.976 16.9173 148.844 17.0681C148.709 17.2189 148.568 17.3323 148.42 17.407C148.271 17.483 148.095 17.5324 147.895 17.5578C147.695 17.5831 147.455 17.5951 147.173 17.5951H146C145.252 17.5951 144.762 17.407 144.528 17.0307C144.295 16.6545 144.179 16.1821 144.179 15.6137V0.552391C144.179 0.200142 144.37 0.0253513 144.752 0.0253513H148.168C148.451 0.0253513 148.621 0.0627111 148.68 0.138765C148.738 0.213485 148.766 0.35225 148.766 0.552391V10.0911H148.941L151.135 6.62736L154.576 1.15549C154.741 0.888629 154.89 0.679148 155.024 0.528374C155.158 0.377601 155.298 0.264187 155.447 0.189468C155.597 0.114748 155.771 0.0680482 155.973 0.0507026C156.171 0.033357 156.412 0.0253513 156.695 0.0253513H157.868C158.565 0.0253513 159.043 0.160113 159.3 0.426969C159.558 0.693825 159.687 1.2222 159.687 2.00809V17.0681C159.687 17.4203 159.495 17.5951 159.112 17.5951H155.698C155.414 17.5951 155.245 17.5578 155.186 17.483C155.128 17.407 155.1 17.2696 155.1 17.0681V7.58004H154.928ZM174.476 4.01618H170.211V17.0681C170.211 17.2696 170.183 17.407 170.125 17.483C170.066 17.5578 169.897 17.5951 169.614 17.5951H166.073C165.691 17.5951 165.5 17.4203 165.5 17.0681V4.01618H161.335C160.986 4.01618 160.812 3.82404 160.812 3.43844V0.627111C160.812 0.34291 160.849 0.170788 160.924 0.113414C160.998 0.0547054 161.135 0.0253513 161.335 0.0253513H174.476C174.675 0.0253513 174.812 0.0547054 174.887 0.113414C174.963 0.170788 175 0.34291 175 0.627111V3.43844C175 3.82404 174.825 4.01618 174.476 4.01618ZM142.157 10.9811C142.067 10.5715 141.915 10.1779 141.708 9.80161L141.484 9.46137C141.317 9.2172 141.131 8.98503 140.91 8.77288C140.586 8.46333 140.19 8.20848 139.725 8.007V7.85623C140.256 7.52133 140.697 7.04899 141.046 6.43789C141.259 6.06563 141.401 5.68269 141.483 5.29442C141.535 5.04624 141.57 4.79673 141.57 4.54322C141.57 3.73998 141.428 3.05416 141.146 2.48576C140.895 1.98007 140.561 1.55977 140.152 1.21152L140 1.07943L139.883 0.999375C139.604 0.780553 139.299 0.58308 138.939 0.426969C138.325 0.158779 137.578 0.0253513 136.695 0.0253513H130.234C129.923 0.0253513 129.67 0.057374 129.459 0.114748C129.402 0.173456 129.374 0.345578 129.374 0.628445V3.46512C129.374 3.68261 129.406 3.82805 129.473 3.9041C129.541 3.98015 129.665 4.01751 129.847 4.01751H135.275L135.413 4.02819C135.678 4.0402 135.906 4.07756 136.074 4.15628C136.274 4.24834 136.424 4.36176 136.523 4.49518C136.623 4.62995 136.689 4.77939 136.723 4.94617L136.757 5.30109C136.751 5.76942 136.612 6.08698 136.337 6.25109C136.058 6.41788 135.752 6.50194 135.421 6.50194H130.593C130.395 6.50194 130.267 6.5353 130.207 6.60201C130.148 6.66872 130.12 6.84485 130.12 7.13038V9.74023C130.12 10.1258 130.279 10.318 130.593 10.318H135.744C136.163 10.318 136.504 10.41 136.772 10.5928L136.999 10.7836C137.288 11.0932 137.433 11.4908 137.433 11.9765C137.433 12.1606 137.406 12.3447 137.357 12.5289C137.308 12.713 137.217 12.8891 137.085 13.0559C136.952 13.2227 136.78 13.3575 136.563 13.4575C136.348 13.5576 136.075 13.6083 135.744 13.6083H133.324V13.583H129.447C129.249 13.583 129.119 13.6123 129.061 13.671C129.004 13.7297 128.974 13.9005 128.974 14.1847V17.0214L129.018 17.3016C129.083 17.4964 129.223 17.5978 129.447 17.5978H136.647C137.644 17.5978 138.454 17.4564 139.076 17.1708C139.62 16.9227 140.057 16.6038 140.4 16.2222L140.548 16.1047C141.097 15.6284 141.523 15.0587 141.832 14.3969C142.139 13.7364 142.293 13.0052 142.293 12.2006C142.295 11.7964 142.248 11.3921 142.157 10.9811ZM127.188 13.667C127.131 13.6083 127.002 13.579 126.803 13.579H118.964V11.4214H118.973V10.3153H125.656C125.972 10.3153 126.13 10.1232 126.13 9.73756V7.12905C126.13 6.84485 126.101 6.66872 126.042 6.60068C125.984 6.53396 125.856 6.50061 125.656 6.50061H118.973V6.17371H118.964V4.01751H120.45L120.47 4.01618H126.403C126.587 4.01618 126.71 3.97882 126.778 3.90276C126.843 3.82804 126.876 3.68127 126.876 3.46379V0.627111C126.876 0.34291 126.848 0.170788 126.79 0.113414C126.731 0.0547054 126.602 0.0253513 126.403 0.0253513H116.081C115.332 0.0253513 114.842 0.213485 114.61 0.589751C114.378 0.966018 114.261 1.43835 114.261 2.00675V15.6124C114.261 16.1808 114.378 16.6531 114.61 17.0294C114.843 17.4057 115.334 17.5938 116.081 17.5938H126.803C127.118 17.5938 127.276 17.4017 127.276 17.0161V14.1794C127.276 13.8978 127.247 13.7257 127.188 13.667Z" fill="white"/>
+<path d="M7.93753 4.02148C7.74295 3.66789 7.4231 3.66789 7.22985 4.02148L0.0824507 16.8652C-0.112127 17.2202 0.0477999 17.5097 0.436955 17.5097H14.8624C15.2515 17.5097 15.4114 17.2202 15.2169 16.8652L7.93753 4.02148ZM20.3172 0.645754C20.1226 0.30151 19.6442 0.0199776 19.2537 0.0199776H9.85798C9.46749 0.0199776 9.3089 0.30151 9.50348 0.645754L23.8862 26.0357C24.0808 26.38 24.4073 26.384 24.6112 26.0451L29.433 18.0074C29.6356 17.6685 29.6436 17.1094 29.4477 16.7652L20.3172 0.645754ZM43.7918 16.8452L34.6613 0.648423C34.4654 0.30151 33.9883 0.0199776 33.5978 0.0199776H24.2008C23.8116 0.0199776 23.6517 0.30151 23.8463 0.648423L32.9901 16.8679C33.1847 17.2135 33.6644 17.4964 34.0536 17.4964H43.4226C43.8131 17.4977 43.9864 17.1921 43.7918 16.8452Z" fill="#EF7822"/>
+</svg>
+</a>
+        <div class="header__right">
+          <nav class="nav">
+            <ul class="nav__list">
+              <li class="nav__list-item"><a class="nav__list-href nav__list-href--active" href="#"> <span><svg class="nav-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="fill-color" d="M4.29851 6.84211L8.95522 14.5789H0L4.29851 6.84211Z"/>
+<path class="fill-color" d="M5.37313 5L13.2537 19L16.4776 14.5789L11.1045 5H5.37313Z" />
+<path class="fill-color" d="M13.2537 5L18.6269 14.5789H24L18.6269 5H13.2537Z" />
+</svg>
+</span>Разделы</a>
+              </li>
+              <li class="nav__list-item"><a class="nav__list-href" href="#"> <span><svg class="nav-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="stroke-color" d="M6.5 2H20V17L19 19.5L20 22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="stroke-color" d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="stroke-color" d="M11 2V8L13.5 6L16 8V2" stroke-width="2" stroke-linejoin="round"/>
+</svg>
+</span>Справочник</a>
+              </li>
+              <li class="nav__list-item"><a class="nav__list-href" href="#"> <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect class="stroke-color" x="4" y="2" width="16" height="20" rx="2" stroke-width="2"/>
+<rect class="fill-color" x="5" y="9" width="14" height="2"/>
+<rect class="fill-color" x="7" y="13" width="4" height="2"/>
+<rect class="fill-color" x="7" y="17" width="4" height="2"/>
+<rect class="fill-color" x="13" y="13" width="4" height="2"/>
+<rect class="fill-color" x="13" y="17" width="4" height="2"/>
+</svg>
+</span>Расчеты</a>
+              </li>
+              <li class="nav__list-item"><a class="nav__list-href" href="#"> <span><svg class="nav-ico" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="stroke-color" d="M12 2L22 8.5V15.5L12 22L2 15.5V8.5L12 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="stroke-color" d="M12 22V15.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="stroke-color" d="M22 8.5L12 15.5L2 8.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="stroke-color" d="M2 15.5L12 8.5L22 15.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="stroke-color" d="M12 2V8.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span>3D Атлас</a>
+              </li>
+            </ul>
+          </nav>
+          <ul class="header__actions">
+            <li class="header__actions-item"><a class="header__actions-href header__actions-href--user" href="#"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a>
+            </li>
+            <li class="header__actions-item"><a class="header__actions-href header__actions-href--search js-toggle-search" href="#">
+              <svg class="search-ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 20L16 16" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+              <svg class="close-ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 6L6 18" stroke="#E9E9E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 6L18 18" stroke="#E9E9E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a>
+            </li>
+          </ul>
+        </div>
+        <div class="header__search">
+          <form class="search-form"><input class="search-form__input" type="text" placeholder="Поиск по сайту"/>
+            <button class="search-form__submit-btn" type="submit"><svg class="search-ico" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 20L16 16" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+          </form>
+        </div>
+      </header>
+      <main class="main">
+        <section class="calculations common-wrap">
+          <div class="calculations__container container">
+            <aside class="calculations__aside">
+              <h2 class="calculations__title title">Расчеты
+              </h2>
+              <nav class="aside-nav">
+                <ul class="aside-nav__list">
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href" href="#">Расчет линейного расширения футеровки</a>
+                  </li>
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href" href="#">Теплоемкость материала</a>
+                  </li>
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href" href="#">Теплопроводность</a>
+                  </li>
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href" href="#">КТР</a>
+                  </li>
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href" href="#">Ожидаемая прочность при сжатии и изгибе</a>
+                  </li>
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href" href="#">Подбор форматов изделий (раскладка для типовых агрегатов)</a>
+                  </li>
+                  <li class="aside-nav__list-item"><a class="aside-nav__list-href aside-nav__list-href--active" href="#">Расчет стационарной температуры кожуха</a>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+            <div class="calculations__content">
+              <div class="calculations__content-head">
+                <div class="calculations__text text">
+                  <h2>Расчет стационарной температуры кожуха</h2>
+                  <p>Расчет выполняется с целью определения температуры кожуха агрегата в процессе работы. Результат используется для оценки степени опасности эксплуатации агрегата как с точки зрения травм персонала, так и на предмет снижения прочности кожуха.</p>
+                  <p>Дополнительный текст: типичный коэффициент теплоотдачи в окружающую среду (воздух составляет 25 Вт/мК, если есть водяное охлаждение то – 1200 Вт/мК.</p>
+                </div>
+              </div>
+              <div class="calculations__content-bottom">
+                <script>
+                  window.calc10Data = [
+                    {
+                      id: 1,
+                      material: 'Сталь',
+                      par_A: 5,
+                      par_B: 10,
+                    },
+                    {
+                      id: 2,
+                      material: 'Алюминий',
+                      par_A: 6,
+                      par_B: 12,
+                    },
+                  ];
+                </script>
+                <div class="calculations__calc calculations__calc--unit-cover js-calc10">
+                  <div class="calculations__calc-row">
+                    <div class="calculations__calc-field">
+                      <label class="calculations__calc-field-label">t <sub>внутр</sub>
+                      </label><input class="calculations__calc-field-input js-digits calc10-par-t1" type="text" data-req="req"/>
+                      <p class="calculations__calc-field-units">°C
+                      </p>
+                    </div>
+                    <div class="calculations__calc-field">
+                      <label class="calculations__calc-field-label">t <sub>воздуха</sub>
+                      </label><input class="calculations__calc-field-input js-digits calc10-par-t2" type="text" data-req="req" value="20"/>
+                      <p class="calculations__calc-field-units">°C
+                      </p>
+                    </div>
+                    <div class="calculations__calc-field">
+                      <label class="calculations__calc-field-label">Коэффициент теплоотдачи
+                      </label><input class="calculations__calc-field-input js-digits calc10-par-coeff" type="text" data-req="req" value="25"/>
+                    </div>
+                  </div>
+                  <div class="calculations__calc-layers">
+                    <div class="calculations__calc-row calculations__calc-row--layer">
+                      <h3 class="calculations__calc-row-title"> <span>1</span> слой футеровки
+                      </h3>
+                      <div class="calculations__calc-field calculations__calc-field--select">
+                        <label class="calculations__calc-field-label">Наименование материала
+                        </label>
+                        <select class="calculations__calc-field-select select2 select2--light js-select calc10-select" data-placeholder="Материал">
+                          <option></option>
+                          <option value="Сталь">Сталь</option>
+                          <option value="Алюминий">Алюминий</option>
+                        </select>
+                      </div>
+                      <div class="calculations__calc-field">
+                        <label class="calculations__calc-field-label">Теплопроводность
+                        </label><input class="calculations__calc-field-input js-digits calc10-par-a" type="text" data-req="req"/>
+                      </div>
+                      <div class="calculations__calc-field">
+                        <label class="calculations__calc-field-label">Толщина
+                        </label><input class="calculations__calc-field-input js-digits calc10-par-thickness" type="text" data-req="req"/>
+                        <p class="calculations__calc-field-units">mm
+                        </p>
+                      </div>
+                      <div class="calculations__calc-field">
+                        <label class="calculations__calc-field-label">t <sub>промежуточная</sub>
+                        </label><input class="calculations__calc-field-input js-digits calc10-par-b" type="text" data-req="req" value="300"/>
+                        <p class="calculations__calc-field-units">°C
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="calculations__calc-row">
+                    <button class="calculations__calc-btn calculations__calc-btn--add-layer" type="button">+ Добавить еще один слой футеровки
+                    </button>
+                  </div>
+                  <div class="calculations__calc-bottom">
+                    <button class="calculations__calc-btn" type="button">Рассчитать
+                    </button>
+                    <div class="calculations__calc-results">
+                      <div class="calculations__calc-result flow">Тепловой поток:
+                        <p class="calculations__calc-result-number">= <span class="flow__value"></span>
+                        </p>
+                      </div>
+                      <div class="calculations__calc-result temp">Температура поверхности:
+                        <p class="calculations__calc-result-number">= <span class="temp__value"></span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+      </footer>
+    </div>
+    <script type="text/javascript" src="static/js/vendor.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/lightgallery,npm/lg-autoplay,npm/lg-fullscreen,npm/lg-hash,npm/lg-pager,npm/lg-share,npm/lg-thumbnail,npm/lg-video,npm/lg-zoom"></script>
+    <script type="text/javascript" src="static/js/own.js"></script>
+  </body>
+</html>

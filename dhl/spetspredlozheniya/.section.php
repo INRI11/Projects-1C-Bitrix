@@ -1,0 +1,6 @@
+<?
+$sSectionName = "спецпредложения";
+$arDirProperties = Array(
+
+);
+?>

@@ -1,0 +1,53 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"О компании", 
+		"/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Калькулятор", 
+		"/calc/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Отслеживание", 
+		"/otslezhivanie/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Для корпоративных клиентов", 
+		"/dlya-korporativnyh-klientov/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Тарифы", 
+		"/tarify/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"спецпредложения", 
+		"/spetspredlozheniya/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

@@ -1,0 +1,1 @@
+<a href="https://creative.bz/" target="_blank">Разработка сайта: Creative</a> | <a href="mailto:make@creative.bz" target="_blank">Техподдержка</a>

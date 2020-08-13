@@ -1,0 +1,32 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Разделы",
+		"/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+    Array(
+        "Справочник",
+        "/dictionary/",
+        Array(),
+        Array(),
+        ""
+    ),
+    Array(
+        "Расчеты",
+        "/calculations/",
+        Array(),
+        Array(),
+        ""
+    ),
+    Array(
+        "3D Атлас",
+        "/3d-atlas/",
+        Array(),
+        Array(),
+        ""
+    ),
+);
+?>

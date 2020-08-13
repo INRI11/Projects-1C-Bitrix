@@ -1,0 +1,1 @@
+<a href="/"><img src="<?= SITE_TEMPLATE_PATH.TEMPLATE_PATH_IMG ?>/logo.png" alt=""></a>

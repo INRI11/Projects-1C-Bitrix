@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Расчеты";
+$arDirProperties = Array(
+
+);
+?>
